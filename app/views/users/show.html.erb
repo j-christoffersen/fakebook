@@ -1,0 +1,16 @@
+<h1><%= @user.name %></h1>
+<% unless @user == current_user %>
+  <div id="friend_form">
+    <% if current_user.friends_with? @user %>
+      <%= render 'remove_friend' %>
+    <% else %>
+      <%= render 'add_friend' %>
+    <% end %>
+  </div>
+<% end %>
+
+<h3>Friends:</h3>
+<div id="friends">
+  <%= render @user.friends %>
+</div>
+
