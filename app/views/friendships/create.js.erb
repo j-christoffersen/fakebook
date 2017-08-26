@@ -1,2 +1,3 @@
-$("#friend_form").html("<%= escape_javascript(render('users/remove_friend')) %>");
-$("#friends").html("<%= escape_javascript(render(@user.friends)) %>");
+<% submit_text = current_user.friends_with?(@user) ? 'Friends' : 'Request Sent' %>
+$("#friend_form").html("<%= escape_javascript(render('users/remove_friend', submit: submit_text)) %>");
+$("#friends").html("<%= escape_javascript(render @user.friends) %>");

@@ -4,21 +4,45 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
-  has_many :friendships
+  has_many :friend_requestings, class_name: 'Friendship'
+  has_many :friendships, -> { where(accepted: true) }
+  has_many :friend_requests, through: :friend_requestings, source: :friend
   has_many :friends, through: :friendships
   
+  has_many :notifications
+  
   def friends_with? other
-    friends.include? other
+    friends.include?(other)
+  end
+
+  def request_sent_to? other
+    friend_requests.include? other
+  end
+  
+  def request_from? other
+    other.friend_requests.include? self
   end
   
   def add_friend other
-    friends << other
-    other.friends << self
+    if request_from? other
+      friends << other
+      other.friend_request_to(self).update(accepted: true)
+    else
+      friend_requests << other
+    end
   end
   
   def remove_friend other
-    friends.delete other
-    other.friends.delete self
+    if friends_with? other
+      other.friends.delete self
+    end
+    friend_requests.delete other
   end
+  
+  protected
+  
+    def friend_request_to other
+      friend_requestings.where(friend_id: other.id)
+    end
   
 end
