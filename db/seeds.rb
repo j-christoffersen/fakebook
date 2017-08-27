@@ -11,6 +11,11 @@ User.create!(name:  "Motherfucker Jones",
              password:              "foobar",
              password_confirmation: "foobar")
              
+User.create!(name:  "Slurms Mackenzie",
+             email: "sm@example.org",
+             password:              "foobar",
+             password_confirmation: "foobar")
+             
 19.times do |i|
   User.create!(name:  "User #{i}",
              email: "user-#{i}@example.org",

@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :friend_requests, through: :friend_requestings, source: :friend
   has_many :friends, through: :friendships
   
-  has_many :notifications
+  has_many :notifications, class_name: 'FriendRequestNotification', dependent: :destroy
   
   def friends_with? other
     friends.include?(other)
@@ -29,20 +29,21 @@ class User < ApplicationRecord
       other.friend_request_to(self).update(accepted: true)
     else
       friend_requests << other
+      other.notifications.create!(friendship_id: friend_request_to(other).id)
     end
   end
   
   def remove_friend other
     if friends_with? other
-      other.friends.delete self
+      other.friends.destroy self
     end
-    friend_requests.delete other
+    friend_requests.destroy other
   end
   
   protected
   
     def friend_request_to other
-      friend_requestings.where(friend_id: other.id)
+      friend_requestings.where(friend_id: other.id).first
     end
   
 end

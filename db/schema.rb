@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(version: 20170826215320) do
   enable_extension "plpgsql"
 
   create_table "friend_request_notifications", force: :cascade do |t|
-    t.bigint "friendships_id"
-    t.bigint "users_id"
+    t.bigint "friendship_id"
+    t.bigint "user_id"
     t.boolean "seen", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_at"], name: "index_friend_request_notifications_on_created_at"
-    t.index ["friendships_id"], name: "index_friend_request_notifications_on_friendships_id"
-    t.index ["users_id"], name: "index_friend_request_notifications_on_users_id"
+    t.index ["friendship_id"], name: "index_friend_request_notifications_on_friendship_id"
+    t.index ["user_id"], name: "index_friend_request_notifications_on_user_id"
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -52,6 +52,6 @@ ActiveRecord::Schema.define(version: 20170826215320) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "friend_request_notifications", "friendships", column: "friendships_id"
-  add_foreign_key "friend_request_notifications", "users", column: "users_id"
+  add_foreign_key "friend_request_notifications", "friendships"
+  add_foreign_key "friend_request_notifications", "users"
 end

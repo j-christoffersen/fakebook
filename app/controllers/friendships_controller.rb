@@ -9,9 +9,11 @@ class FriendshipsController < ApplicationController
   end
   
   def destroy
-    @user = Friendship.find(params[:id]).user
-    @friend = Friendship.find(params[:id]).friend
-    @user.remove_friend @friend
+    friendship = Friendship.find(params[:id])
+    @user = friendship.friend
+    @sender = friendship.user
+    @sender.remove_friend @user
+    #current_user.remove_friend @user
     respond_to do |format|
       format.html { redirect_to(session[:return_page] || root_path) }
       format.js

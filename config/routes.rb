@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'notifications/index'
+
   get 'hello', to: 'application#hello'
   
   devise_for :users, controllers: {
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   
   resources :users, only: [:show, :index]
   resources :friendships, only: [:create, :destroy]
+  resources :notifications, only: :index
   root 'users#index'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

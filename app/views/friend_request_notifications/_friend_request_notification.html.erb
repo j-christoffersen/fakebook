@@ -1,0 +1,18 @@
+<% sender = friend_request_notification.friendship.user %>
+
+<div id="friend_form">
+  <h3><%= link_to sender.name, user_path(sender) %> sent you a friend request!</h3>
+  <% if current_user.request_sent_to? sender %>
+    <% if current_user.friends_with? sender %>
+      <%= render html: 'Accepted' %>
+    <% else %>
+      <%= render html: 'You shouldn\'t see this' %>
+    <% end %>
+  <% else %>
+    <% if current_user.request_from? sender %>
+      <%= render partial: 'accept_friend', locals: { user: sender } %>
+    <% else %>
+      <%= render partial: 'add_friend', locals: {submit: 'Add Friend', user: sender} %>
+    <% end %>
+  <% end %>
+</div>
