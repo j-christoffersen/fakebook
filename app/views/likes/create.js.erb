@@ -1,0 +1,4 @@
+<% post = @posts[@index] %>
+
+$("#post_<%= @index.to_s %> #like_form").html("<%= escape_javascript(render(partial: 'posts/like_form', locals: { post: @posts[@index], index: @index })) %>");
+$("#post_<%= @index.to_s %> #likes").html("<%= escape_javascript(render_likes_caption post.likers) %>");

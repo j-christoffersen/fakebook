@@ -1,4 +1,6 @@
 <% if user_signed_in?  %>
+  Signed in as: <%= current_user.name %>
+  <%= link_to("Home", root_path) %>
   <%= link_to("Sign Out", sign_out_path) %>
   <%= link_to("Notifications", notifications_path) %>
 <% end %>

@@ -6,13 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(name:  "Motherfucker Jones",
-             email: "mf@example.org",
+rick = User.create!(name:  "Rick Sanchez",
+             email: "rs@example.org",
              password:              "foobar",
              password_confirmation: "foobar")
              
-User.create!(name:  "Slurms Mackenzie",
-             email: "sm@example.org",
+morty = User.create!(name:  "Morty Smith",
+             email: "ms@example.org",
+             password:              "foobar",
+             password_confirmation: "foobar")
+             
+poopy = User.create!(name:  "Mr. Poopy Butthole",
+             email: "mpb@example.org",
              password:              "foobar",
              password_confirmation: "foobar")
              
@@ -22,3 +27,13 @@ User.create!(name:  "Slurms Mackenzie",
              password:              "foobar",
              password_confirmation: "foobar")
 end
+
+rick.add_friend morty
+morty.add_friend rick
+rick.add_friend poopy
+poopy.add_friend rick
+morty.add_friend poopy
+poopy.add_friend morty
+
+rick.posts.create!(body: "Wubalubadubdub!!!")
+poopy.posts.create!(body: "ooooh weeeeeeee")

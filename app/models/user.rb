@@ -11,6 +11,8 @@ class User < ApplicationRecord
   
   has_many :notifications, class_name: 'FriendRequestNotification', dependent: :destroy
   
+  has_many :posts
+  
   def friends_with? other
     friends.include?(other)
   end
@@ -38,6 +40,14 @@ class User < ApplicationRecord
       other.friends.destroy self
     end
     friend_requests.destroy other
+  end
+  
+  # Returns a user's status feed.
+  def feed
+    following_ids = "SELECT friend_id FROM friendships
+                     WHERE  user_id = :user_id"
+    Post.where("user_id IN (#{following_ids}) OR user_id = :user_id",
+                    user_id: id)
   end
   
   protected

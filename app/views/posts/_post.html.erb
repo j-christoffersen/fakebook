@@ -1,0 +1,14 @@
+<% user = post.user %>
+
+<div id="post_<%= post_counter %>">
+  <h3><%= link_to user.name, user_path(user) %>:</h3>
+  <div id="like_form">
+    <%= render partial: 'like_form', locals: { post: post, index: post_counter } %>
+  </div>
+  <div id="likes">
+    <%= render_likes_caption post.likers %>
+  </div>
+  <p>
+    <%= post.body %>
+  </p>
+</div>
