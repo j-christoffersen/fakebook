@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :notifications, class_name: 'FriendRequestNotification', dependent: :destroy
   
   has_many :posts
+  has_many :comments
   
   def friends_with? other
     friends.include?(other)

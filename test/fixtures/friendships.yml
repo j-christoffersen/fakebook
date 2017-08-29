@@ -3,5 +3,9 @@
 one:
   user: rick
   friend: poopy
+  
+one_prime:
+  user: poopy
+  friend: rick
 
 

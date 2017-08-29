@@ -15,11 +15,12 @@ Rails.application.routes.draw do
     get 'sign_up',  to: 'devise/registrations#new'
   end
   
-  resources :users, only: [:show, :index]
-  resources :friendships, only: [:create, :destroy]
+  resources :users,         only: [:show, :index]
+  resources :friendships,   only: [:create, :destroy]
   resources :notifications, only: :index
-  resources :posts, only: [:index, :create, :destroy]
-  resources :likes, only: [:create,  :destroy]
+  resources :posts,         only: [:index, :create, :destroy]
+  resources :likes,         only: [:create,  :destroy]
+  resources :comments,      only: [:create,  :destroy]
   
   root 'posts#index'
   

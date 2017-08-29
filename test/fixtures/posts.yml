@@ -1,9 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  body: MyText
-  user: one
+wub:
+  body: Wubalubadubdub!
+  user: rick
+  
+ooo:
+  body: ooooweeeeee!
+  user: poopy
+  
+gee:
+  body: Aw gee, rick
+  user: morty
+  
 
-two:
-  body: MyText
-  user: two
+
