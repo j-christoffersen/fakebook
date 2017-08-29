@@ -1,16 +1,19 @@
 <% user = post.user %>
 
 <div id="post_<%= post_counter %>">
-  <h3><%= link_to user.name, user_path(user) %>:</h3>
+  <h3>
+    <%= gravatar_for user %>
+    <%= link_to user.name, user_path(user) %>:
+  </h3>
+  <p>
+    <%= post.body %>
+  </p>
   <div id="like_form">
-    <%= render partial: 'like_form', locals: { post: post, index: post_counter } %>
+    <%= render partial: 'posts/like_form', locals: { post: post, index: post_counter } %>
   </div>
   <div id="likes">
     <%= render_likes_caption post.likers %>
   </div>
-  <p>
-    <%= post.body %>
-  </p>
   <%= render post.comments.all %>
   <%= form_for post.comments.build do |f| %>
     <%= f.text_area :content %>

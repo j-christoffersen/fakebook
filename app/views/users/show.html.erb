@@ -1,25 +1,14 @@
 
-<h1><%= @user.name %></h1>
-<% unless @user == current_user %>
-  <div id="friend_form">
-    <% if current_user.request_sent_to? @user %>
-      <% if current_user.friends_with? @user %>
-        <%= render partial: 'users/remove_friend', locals: {submit: 'Friends'} %>
-      <% else %>
-        <%= render partial: 'users/remove_friend', locals: {submit: 'Request Sent'} %>
-      <% end %>
-    <% else %>
-      <% if current_user.request_from? @user %>
-        <%= render partial: 'users/accept_friend' %>
-      <% else %>
-        <%= render partial: 'users/add_friend', locals: {submit: 'Add Friend'} %>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
+<h1>
+  <%= gravatar_for @user %>
+  <%= @user.name %>
+</h1>
+<%= render partial: 'friend_form', locals: {user: @user} %>
 
 <h3>Friends:</h3>
 <div id="friends">
   <%= render @user.friends %>
 </div>
 
+<h3>Posts:</h3>
+<%= render @user.posts %>

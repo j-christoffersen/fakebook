@@ -4,7 +4,13 @@ class FriendshipsController < ApplicationController
     current_user.add_friend @user
     respond_to do |format|
       format.html { redirect_to(session[:return_page] || root_path) }
-      format.js
+      format.js do
+        if session[:return_page] == users_url
+          render 'refresh_user.js'
+        else
+          render 'create.js'
+        end
+      end
     end
   end
   
@@ -16,7 +22,13 @@ class FriendshipsController < ApplicationController
     #current_user.remove_friend @user
     respond_to do |format|
       format.html { redirect_to(session[:return_page] || root_path) }
-      format.js
+      format.js do
+        if session[:return_page] == users_url
+          render 'refresh_user.js'
+        else
+          render 'destroy.js'
+        end
+      end
     end
   end
   

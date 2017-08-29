@@ -1,0 +1,17 @@
+<% unless user == current_user %>
+  <div id="friend_form">
+    <% if current_user.request_sent_to? user %>
+      <% if current_user.friends_with? user %>
+        <%= render partial: 'users/remove_friend', locals: {submit: 'Friends', user: user} %>
+      <% else %>
+        <%= render partial: 'users/remove_friend', locals: {submit: 'Request Sent', user: user} %>
+      <% end %>
+    <% else %>
+      <% if current_user.request_from? user %>
+        <%= render partial: 'users/accept_friend' %>
+      <% else %>
+        <%= render partial: 'users/add_friend', locals: {submit: 'Add Friend', user: user} %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

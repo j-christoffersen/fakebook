@@ -1,3 +1,5 @@
-<div>
+<div id="user_<%= user.id %>">
+  <%= gravatar_for user %>
   <%= link_to user.name, user_path(user) %>
+  <%= render partial: 'users/friend_form', locals: {user: user} %>
 </div>

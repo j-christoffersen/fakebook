@@ -1,2 +1,2 @@
-$("#friend_form").html("<%= escape_javascript(render('users/add_friend', submit: 'Add Friend')) %>");
+$("#friend_form").html("<%= escape_javascript(render(partial: 'users/add_friend', locals: {submit: 'Add Friend', user: @user})) %>");
 $("#friends").html("<%= escape_javascript(render @user.friends) %>");

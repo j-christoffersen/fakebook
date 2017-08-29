@@ -6,5 +6,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    session[:return_page] = request.original_url
   end
 end
