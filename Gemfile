@@ -33,6 +33,9 @@ gem 'jquery-rails'
 
 # Use devise to login
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

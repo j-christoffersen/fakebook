@@ -32,6 +32,16 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   
   config.action_mailer.default_url_options = { :host => 'https://odin-jackson-christoffersen.c9users.io/' }
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :user_name => 'b3cf7ce14e315d',
+    :password => '32cb581ca84163',
+    :address => 'smtp.mailtrap.io',
+    :domain => 'smtp.mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
